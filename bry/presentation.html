@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Valentine 💖</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<audio autoplay loop>
+    <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<div class="box">
+    <h1 id="slide">Just want you to know 💕</h1>
+    <button class="yes" onclick="next()">Next ➡️</button>
+</div>
+
+<script>
+    const slides = [
+        "Thank you for being part of my life💖",
+        "I Love you so so much 💕",
+        "You're my favorite person 🌹",
+        "Happy Valentine’s Day my love ❤️"
+    ];
+
+    let i = 0;
+
+    function next() {
+        i++;
+
+        const slide = document.getElementById("slide");
+        const btn = document.getElementById("nextBtn");
+
+        if (i < slides.length) {
+            slide.style.opacity = 0;
+
+            setTimeout(() => {
+                slide.innerText = slides[i];
+                slide.style.opacity = 1;
+
+                // LAST SLIDE
+                if (i === slides.length - 1) {
+                    btn.style.display = "none";
+                    startFireworks();
+                }
+            }, 300);
+        }
+    }
+
+    function startFireworks() {
+        console.log("🔥 Fireworks started");
+
+        for (let i = 0; i < 15; i++) {
+            const firework = document.createElement("div");
+            firework.className = "firework";
+
+            firework.style.top = Math.random() * 100 + "vh";
+            firework.style.left = Math.random() * 100 + "vw";
+
+            document.body.appendChild(firework);
+
+            setTimeout(() => {
+                firework.remove();
+            }, 1200);
+        }
+    }
+</script>
+</body>
+</html>
